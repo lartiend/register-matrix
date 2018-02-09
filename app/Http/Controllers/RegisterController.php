@@ -12,19 +12,24 @@ class RegisterController extends Controller
 	public function details()
 	{
 		// input validation
-		if (!ctype_digit($_GET['child']) || $_GET['child'] < 1 || $_GET['child'] > 15) {
+		/**
+		* input must be all digit, no other characters allowed e.g. decimal point
+		* input must be between 1-15
+		* input must not start in 0 e.g. 01
+		*/
+		if (!filter_var($_GET['child'], FILTER_VALIDATE_INT, array("options" => array("min_range"=>1, "max_range"=>15))))
+		{
 			return response()->json([
 				'status'	=> 'danger',
 				'message' 	=> 'You entered an invalid input.',]);
 		}
-
 		// valid user input
 		if ($_GET['child'] == 1) {
 			return response()->json([
 				'status'	=> 'success',
 				'child' 	=> $_GET['child'],
 				'parent' 	=> 'N/A',
-				'position'	=> 'root',]);
+				'position'	=> 'Root',]);
 		}
 
 		$node = ($this->isEven()) ? 'App\NodeEven' : 'App\NodeOdd';

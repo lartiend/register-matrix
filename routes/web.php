@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('register');
-    // return view('welcome');
-});
+Route::get('/', function () { return view('register');});
 Route::get('register', 'RegisterController@details');
 
 

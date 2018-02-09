@@ -1,12 +1,16 @@
 body {
 	margin-top: 10vh;
 }
-
 #content {
 	max-width: 400px;
 	padding: 10px;
 }
-
 #register {
 	cursor: pointer;
+}
+#back {
+	width: 100px;
+}
+#header {
+	font-size: 1.6em;
 }
